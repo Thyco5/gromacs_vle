@@ -1,0 +1,15 @@
+tolerance 2.0
+filetype pdb  # <--- IMPORTANT: SET TO PDB
+output mixture_packed.pdb
+
+# Methanol
+structure methanol_unique.pdb # <--- Use the PDB with unique names
+  number 200 # Or 1 for a quick test
+  inside cube 0. 0. 0. 40.
+end structure
+
+# Propanol
+structure propanol_unique.pdb # <--- Use the PDB with unique names
+  number 100 # Or 1 for a quick test
+  inside cube 0. 0. 0. 40.
+end structure

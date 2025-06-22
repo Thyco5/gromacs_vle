@@ -1,0 +1,13 @@
+source leaprc.gaff2
+
+loadamberparams moh.frcmod
+loadamberparams pol.frcmod # This frcmod was generated from pol.mol2 (which now internally refers to PRH)
+
+MOH = loadmol2 moh.mol2
+PRH = loadmol2 pol.mol2  # <--- CHANGED THIS LINE (variable PRH)
+
+mixture = loadpdb mixture_packed.pdb
+check mixture
+set mixture box {40.0 40.0 40.0}
+saveamberparm mixture mixture.prmtop mixture.inpcrd
+quit

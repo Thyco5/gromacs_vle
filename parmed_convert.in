@@ -1,0 +1,10 @@
+# Load the Amber parameter file (topology)
+parm mixture.prmtop
+
+# Load the Amber coordinate file
+loadRestrt mixture.inpcrd
+
+# Save GROMACS topology (.top) and coordinate (.gro) files
+outparm mixture.top mixture.gro
+
+quit

@@ -1,0 +1,50 @@
+define                  = -DPOSRES  ; (Optional: if you want to initially restrain heavy atoms while box equilibrates - more for proteins)
+integrator              = md
+dt                      = 0.002     ; 2 fs
+nsteps                  = 500000    ; 1 ns (500,000 * 0.002 ps), adjust as needed (1-10 ns is common)
+
+; Output control
+nstxout-compressed      = 5000      ; save coordinates every 10 ps
+nstenergy               = 5000      ; save energies every 10 ps
+nstlog                  = 5000      ; update log file every 10 ps
+
+; Neighbor searching (can be same as NVT)
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+
+; Electrostatics and VdW (can be same as NVT)
+coulombtype             = PME
+rcoulomb                = 1.2
+rvdw                    = 1.2
+pme_order               = 4
+fourierspacing          = 0.16
+
+; Temperature coupling
+tcoupl                  = V-rescale
+tc-grps                 = System
+tau_t                   = 0.1
+ref_t                   = 298.15    ; Your target temperature
+
+; Pressure coupling
+pcoupl                  = Berendsen             ; Use Berendsen for initial NPT
+;pcoupl                  = Parrinello-Rahman    ; (commented out for now)
+pcoupltype              = isotropic
+tau_p                   = 1.0                   ; Can be a bit shorter for Berendsen (e.g., 1.0 or 2.0 ps)
+ref_p                   = 1.0
+compressibility         = 4.5e-5
+
+; PBC
+pbc                     = xyz
+
+; Velocity generation (only if not starting from .cpt or if gen_vel is 'yes')
+gen_vel                 = no        ; If starting from NVT checkpoint, it has velocities
+                                    ; If starting from .gro only, set to 'yes' and define gen_temp
+; gen_temp                = 298.15
+; gen_seed                = -1
+
+; Constraints
+constraints             = h-bonds
+constraint_algorithm    = lincs
+lincs_iter              = 1
+lincs_order             = 4

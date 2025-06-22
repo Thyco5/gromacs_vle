@@ -1,0 +1,20 @@
+# Packmol input file for Methanol (MOH) and Propanol (POL) mixture
+
+tolerance 2.0
+
+output mixture_packed.pdb
+
+# Define the first molecule type: Methanol (MOH)
+structure moh_test.mol2  # <--- Use the test file
+  filetype mol2
+  number 1 # Just one molecule for this test
+  inside cube 0. 0. 0. 40.
+end structure
+
+# Define the second molecule type: Propanol (POL)
+# Commented out for this specific test
+# structure pol.mol2
+#  filetype mol2
+#  number 100
+#  inside cube 0. 0. 0. 40.
+# end structure

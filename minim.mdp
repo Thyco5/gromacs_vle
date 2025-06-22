@@ -1,0 +1,14 @@
+integrator  = steep     ; Steepest descent minimization
+emtol       = 1000.0    ; Stop minimization when max force is < 1000.0 kJ/mol/nm
+emstep      = 0.01      ; Minimization step size (nm)
+nsteps      = 5000      ; Max number of minimization steps
+
+; Parameters for neighbor searching, electrostatics, and VdW (can be similar to MD)
+cutoff-scheme   = Verlet
+nstlist         = 20
+rlist           = 1.2
+coulombtype     = PME
+rcoulomb        = 1.2
+rvdw            = 1.2
+pbc             = xyz
+
